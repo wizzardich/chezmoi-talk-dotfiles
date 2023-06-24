@@ -1,12 +1,8 @@
 {{- $email := promptString "email" -}}
-{{- $gpg_key := promptString "gpg_key" -}}
 {{- $shell := promptString "shell" "fish" -}}
 
-[edit]
-    command = "code"
-    args = ["--wait"]
 [diff]
-    command = "delta"
+    command = "diff"
     args = ["{{`{{ .Destination }}`}}", "{{`{{ .Target }}`}}"]
 [git]
     autoCommit = true
