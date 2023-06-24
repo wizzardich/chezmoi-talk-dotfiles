@@ -1,0 +1,6 @@
+.priv_stuff/
+.priv_tools/
+.ignored_stuff/
+.ignored_tools/
+.ignored/
+.DS_Store

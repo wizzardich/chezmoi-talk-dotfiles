@@ -1,0 +1,28 @@
+[alias]
+	history = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	graph = log --all --decorate --oneline --graph
+	rbi = rebase -i
+	rbim = rebase -i main
+	pushf = push --force-with-lease
+	pusho = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+	branchd = "!f() { git branch -D $1 && git push origin --delete $1; }; f"
+	clean-branches = "!f() { git fetch -p && git branch -vv | grep ': gone]' |  grep -v '*' | awk '{ print $1; }' | xargs -r git branch -D ; }; f"
+[gpg]
+	program = gpg
+[user]
+	name = Vlad Tomashpolskyi
+	email = {{ .email }}
+[core]
+	editor = code --wait
+	pager = delta
+	excludesfile = {{ .chezmoi.homeDir }}/.global.gitignore
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = true
+[init]
+	templatedir = ~/.git_template
+

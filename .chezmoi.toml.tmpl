@@ -1,0 +1,17 @@
+{{- $email := promptString "email" -}}
+{{- $gpg_key := promptString "gpg_key" -}}
+{{- $shell := promptString "shell" "fish" -}}
+
+[edit]
+    command = "code"
+    args = ["--wait"]
+[diff]
+    command = "delta"
+    args = ["{{`{{ .Destination }}`}}", "{{`{{ .Target }}`}}"]
+[git]
+    autoCommit = true
+    autoPush = true
+[data]
+    email = {{ $email | quote }}
+    {{ if $gpg_key }}gpg_key = {{ $gpg_key | quote }}{{ end }}
+    shell = {{ $shell | quote }}
